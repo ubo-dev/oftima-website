@@ -12,6 +12,7 @@ import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import logo from "../../public/oftima-logo.png";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -41,7 +42,7 @@ const Navbar = () => {
       <div className="container px-5 md:px-16 flex items-center justify-between mx-auto">
         <Link href={"/"}>
           <h2 className="text-3xl">
-            <span className="text-rose-600">Of</span>tima.
+            <Image src={logo} alt="logo" width={130} height={130}/>
           </h2>
         </Link>
 
