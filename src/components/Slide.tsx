@@ -1,77 +1,49 @@
-// carousel.tsx
-"use client";
-import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+import { images } from '@/lib/images';
 
-const Slide = ({
-  data,
-}: {
-  data: {
-    image: string;
-  }[];
-}) => {
-  // State and Ref initialization
-  const [currentImg, setCurrentImg] = useState(0);
-  const [carouselSize, setCarouselSize] = useState({ width: 0, height: 0 });
-  const carouselRef = useRef(null);
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/a11y';
+import 'swiper/css/effect-fade';
+import { A11y, Autoplay, Navigation, Pagination, EffectFade } from "swiper/modules";
+import Image from 'next/image';
 
-  // useEffect to get the initial carousel size
-  useEffect(() => {
-    let elem = carouselRef.current as unknown as HTMLDivElement;
-    let { width, height } = elem.getBoundingClientRect();
-    if (carouselRef.current) {
-      setCarouselSize({
-        width,
-        height,
-      });
-    }
-  }, []);
-
+export default function Slide() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center text-center">
-    {/* Carousel container */}
-    <div className="relative overflow-hidden rounded-md" style={{ width: carouselSize.width, height: carouselSize.height }}>
-      {/* Image container */}
-      <div
-        ref={carouselRef}
-        style={{
-          left: -currentImg * carouselSize.width,
-        }}
-        className="absolute flex h-full w-full transition-all duration-300"
-      >
-        {/* Map through data to render images */}
-        {data.map((v, i) => (
-          <div key={i} className="relative shrink-0" style={{ width: carouselSize.width, height: carouselSize.height }}>
-            <Image
-              className="pointer-events-none object-cover"
-              alt={`carousel-image-${i}`}
-              fill
-              src={v.image || "https://random.imagecdn.app/800/600"}
-            />
-          </div>
-        ))}
+    <section className='py-12 px-44'>
+      <div className='container'>
+        <Swiper
+          navigation
+          pagination={{ type: 'fraction' }}
+          modules={[Navigation, Pagination, Autoplay, A11y, EffectFade]}
+          onSwiper={swiper => console.log(swiper)}
+          className='h-[36rem] w-full rounded-lg' // Increased height
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          lazy={true}
+          a11y={true}
+          effect='fade' // Added fade effect
+          fadeEffect={{ crossFade: true }} // Configured fade effect
+        >
+          {images.map((image, index) => (
+            <SwiperSlide key={index}>
+              <div className='relative h-full w-full'>
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  layout='fill'
+                  objectFit='contain' // Changed to contain to fit images within the container
+                  placeholder='blur'
+                  blurDataURL='/path/to/low-res.jpg'
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
-    </div>
-
-    {/* Navigation buttons */}
-    <div className="mt-3 flex justify-center">
-      <button
-        disabled={currentImg === 0}
-        onClick={() => setCurrentImg((prev) => prev - 1)}
-        className={`border px-4 py-2 font-bold ${currentImg === 0 && "opacity-50"}`}
-      >
-        {"<"}
-      </button>
-      <button
-        disabled={currentImg === data.length - 1}
-        onClick={() => setCurrentImg((prev) => prev + 1)}
-        className={`border px-4 py-2 font-bold ${currentImg === data.length - 1 && "opacity-50"}`}
-      >
-        {">"}
-      </button>
-    </div>
-  </div>
+    </section>
   );
-};
-
-export default Slide;
+}

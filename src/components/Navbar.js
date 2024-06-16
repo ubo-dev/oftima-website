@@ -37,7 +37,7 @@ const Navbar = () => {
       ref={navbar}
       className={`${
         theme === "dark" ? "bg-[#121212]" : "bg-white text-black"
-      } w-full z-50 fixed top-0 left-0 py-4 mb-10`}
+      } w-full z-50 fixed top-0 left-0 py-2 mb-10`}
     >
       <div className="container px-5 md:px-16 flex items-center justify-between mx-auto">
         <Link href={"/"}>

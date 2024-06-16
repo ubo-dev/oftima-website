@@ -20,7 +20,8 @@
     "nextjs-progressbar": "^0.0.16",
     "react": "^18",
     "react-dom": "^18",
-    "react-multi-carousel": "^2.8.5"
+    "react-multi-carousel": "^2.8.5",
+    "swiper": "^11.1.4"
   },
   "devDependencies": {
     "@types/node": "^20",
