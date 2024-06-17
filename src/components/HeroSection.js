@@ -25,10 +25,8 @@ const HeroSection = () => {
         <div className="before:w-full before:h-full before:absolute before:top-0 before:left-0 before:bg-left-bottom before:bg-contain before:bg-no-repeat before:-z-50 after:w-full after:h-full after:absolute after:top-0 after:left-0 after:bg-right after:bg-contain after:bg-no-repeat after:-z-50">
           <Image
             src={hero}
-            width={1100}
-            height={500}
             alt="hero Image"
-            className="object-contain mx-auto rounded-3xl"
+            className="object-cover mx-auto rounded-3xl w-full max-w-[1100px] h-auto md:max-w-[800px] lg:max-w-[1100px] sm:object-cover"
           />
         </div>
       </div>

@@ -14,17 +14,15 @@ import Image from 'next/image';
 
 export default function Slide() {
   return (
-    <section className='py-12 px-44'>
-      <div className='container'>
+    <section id="hizmetlerimiz" className='py-12 px-4 md:px-12 lg:px-44 scroll-mt-52'>
+      <div className='container mx-auto'>
         <Swiper
           navigation
           pagination={{ type: 'fraction' }}
           modules={[Navigation, Pagination, Autoplay, A11y, EffectFade]}
           onSwiper={swiper => console.log(swiper)}
-          className='h-[36rem] w-full rounded-lg' // Increased height
+          className='h-64 md:h-96 lg:h-[36rem] w-full rounded-lg' // Responsive heights
           autoplay={{ delay: 3000, disableOnInteraction: false }}
-          lazy={true}
-          a11y={true}
           effect='fade' // Added fade effect
           fadeEffect={{ crossFade: true }} // Configured fade effect
         >
@@ -37,7 +35,7 @@ export default function Slide() {
                   layout='fill'
                   objectFit='contain' // Changed to contain to fit images within the container
                   placeholder='blur'
-                  blurDataURL='/path/to/low-res.jpg'
+                  blurDataURL='/../public/home.png'
                 />
               </div>
             </SwiperSlide>

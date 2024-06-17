@@ -1,7 +1,7 @@
 "use client";
 import AboutUs from "@/components/AboutUs";
+import ContactUs from "@/components/ContactUs";
 import HeroSection from "@/components/HeroSection";
-import Subscribe from "@/components/Subscribe";
 import Slide from "@/components/Slide";
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
       <HeroSection />
       <AboutUs />
       <Slide />
-      <Subscribe />
+      <ContactUs />
     </div>
   );
 }
